@@ -15,11 +15,16 @@ class StatusBarClockView extends HTMLElement
     seconds = date.getSeconds()
     minutes = date.getMinutes()
     hour = date.getHours()
+    
+    suffix = 'pm' if hour = >= 12
+    suffix = 'am' if hour  < 12
+    hour = hour-12 if hour = > 12
+    hour = 12 if hour == 0
 
     minutes = '0' + minutes if minutes < 10
     seconds = '0' + seconds if seconds < 10
 
-    "#{hour}:#{minutes}:#{seconds}"
+    "#{hour}:#{minutes}:#{seconds} #{suffix}"
 
   updateClock: ->
     @textContent = @getTime()
